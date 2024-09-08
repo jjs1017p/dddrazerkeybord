@@ -3,163 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>레이저 키보드 사기</title>
+    <title>소유 금액 관리</title>
     <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
         body {
-            background-image: url('https://th.bing.com/th/id/OIP.pbvpmw6nTM_v5FeC_pr1bgAAAA?rs=1&pid=ImgDetMain');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            color: #fff;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
         }
         .container {
-            width: 100%;
+            max-width: 500px;
+            margin: auto;
+            background: #fff;
             padding: 20px;
-            text-align: center;
-            position: absolute;
-            top: 20px;
-        }
-        .title-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 20px 0;
-        }
-        .title-container img {
-            width: 50px;
-            height: auto;
-            margin: 0 10px;
-        }
-        h1 {
-            font-size: 4rem;
-            font-weight: bold;
-            background: linear-gradient(45deg, #ff0000, #00ff00, #0000ff, #ffff00);
-            background-size: 400% 400%;
-            color: transparent;
-            -webkit-background-clip: text;
-            background-clip: text;
-            animation: gradientShift 5s ease infinite;
-            margin: 0;
-        }
-        p {
-            font-size: 2rem;
-            margin: 10px 0;
-        }
-        .interactive {
-            cursor: pointer;
-            color: #ff0;
-            text-decoration: underline;
-        }
-        .timer {
-            font-size: 1.5rem;
-            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         .input-container {
-            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .input-container label {
+            display: block;
+            margin-bottom: 8px;
         }
         .input-container input {
-            font-size: 1.2rem;
-            padding: 5px;
-            margin-right: 10px;
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
         }
-        .input-container button {
-            font-size: 1.2rem;
-            padding: 5px 10px;
-        }
-        .save-container {
+        .result {
             margin-top: 20px;
-        }
-        .saved-amount-container {
-            margin-top: 20px;
-        }
-        .links {
-            margin-top: 20px;
-            font-size: 1.2rem;
-        }
-        .links a {
-            color: #ff0;
-            text-decoration: underline;
-            margin: 0 15px;
-        }
-        .keyboard {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        .key {
-            width: 50px;
-            height: 50px;
-            margin: 5px;
-            background-color: #333;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            border-radius: 5px;
-            cursor: pointer;
-            user-select: none;
-        }
-        @keyframes gradientShift {
-            0% { background-position: 0% 0%; }
-            25% { background-position: 100% 0%; }
-            50% { background-position: 100% 100%; }
-            75% { background-position: 0% 100%; }
-            100% { background-position: 0% 0%; }
+            font-size: 18px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="title-container">
-            <img src="https://img.icons8.com/color/1600/razer.png" alt="Razer Logo">
-            <h1>레이저 키보드 사기</h1>
-            <img src="https://img.icons8.com/color/1600/razer.png" alt="Razer Logo">
-        </div>
-        <p>Razer BlackWidow V4 Pro 195,000원</p>
-        <p>
-            목표 금액: <span id="goalAmount">195,000</span>원<br>
-            <span id="balance">소유 금액: 0원</span>
-        </p>
         <div class="input-container">
-            <input type="number" id="amountInput" placeholder="금액 입력 (원 단위)" />
-            <button onclick="addAmount()">금액 추가</button>
-            <button onclick="resetAmount()">소유 금액 초기화</button>
+            <label for="amount">소유 금액:</label>
+            <input type="number" id="amount" placeholder="금액 입력">
         </div>
-        <div class="save-container">
-            <button onclick="saveAmount()">소유 금액 저장</button>
-            <p id="saveMessage"></p>
-        </div>
-        <div class="saved-amount-container">
-            <input type="number" id="retrieveInput" placeholder="2자리 코드 입력" />
-            <button onclick="retrieveAmount()">저장 금액 불러오기</button>
-            <p id="retrievedAmount"></p>
-        </div>
-        <div class="timer" id="timer"></div>
-        <div class="links">
-            <a href="https://www.youtube.com/watch?v=T6axDYPRXn4" target="_blank">YouTube 리뷰</a>
-            <a href="https://www.razer.com/kr-kr/gaming-keyboards/Razer-BlackWidow-V4-X/RZ03-04701500-R3K1" target="_blank">레이저 키보드 구매</a>
-        </div>
-        <div class="keyboard">
-            <div class="key">a</div>
-            <div class="key">s</div>
-            <div class="key">d</div>
-            <div class="key">f</div>
-            <div class="key">g</div>
-            <div class="key">h</div>
-            <div class="key">j</div>
-            <div class="key">k</div>
-            <div class="key">l</div>
-        </div>
+        <div class="result" id="savedAmount">저장된 금액: N/A</div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // 페이지 로드 시 저장된 금액 불러오기
+        window.onload = function() {
+            const savedAmount = localStorage.getItem('savedAmount');
+            if (savedAmount) {
+                document.getElementById('savedAmount').textContent = '저장된 금액: ' + savedAmount;
+                document.getElementById('amount').value = savedAmount;
+            }
+        };
+
+        // 금액 입력 시 자동 저장
+        document.getElementById('amount').addEventListener('input', function() {
+            const amount = document.getElementById('amount').value;
+            if (amount !== "") {
+                localStorage.setItem('savedAmount', amount);
+                document.getElementById('savedAmount').textContent = '저장된 금액: ' + amount;
+            }
+        });
+    </script>
 </body>
 </html>
